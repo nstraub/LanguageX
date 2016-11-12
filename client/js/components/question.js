@@ -1,5 +1,5 @@
 import React from 'react';
-import connectWithDispatch from '../utils/connector';
+import {connectTo} from '../utils/connector';
 
 const Question = React.createClass({
     render: function () {
@@ -11,4 +11,4 @@ const Question = React.createClass({
     }
 });
 
-export default connectWithDispatch()(Question);
+export default connectTo(Question);

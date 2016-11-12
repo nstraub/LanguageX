@@ -1,5 +1,5 @@
 import React from 'react';
-import connectWithDispatch from '../utils/connector';
+import {connectWithDispatch} from '../utils/connector';
 import {submitAnswer} from '../actions/question';
 
 const Answer = React.createClass({
@@ -11,8 +11,11 @@ const Answer = React.createClass({
           </div>
         )
     },
+    isAnswerCorrect: function () {
+        return this.props.answer.toLowerCase() === this.refs.answer.value.toLowerCase();
+    },
     checkAnswer: function () {
-        this.props.submitAnswer(this.props.answer.toLowerCase() === this.refs.answer.value.toLowerCase());
+        this.props.submitAnswer(this.isAnswerCorrect());
     }
 });
 

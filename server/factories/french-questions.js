@@ -2,11 +2,11 @@ export default function () {
     let questions = [
         {
             question: "Bonjour",
-            answer: "Hello",
+            answer: "good morning",
         },
         {
             question: "Au revoir",
-            answer: "Goodbye",
+            answer: "goodbye",
         },
         {
             question: "Je suis",

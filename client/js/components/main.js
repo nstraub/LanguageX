@@ -2,7 +2,7 @@ import React from 'react';
 import Question from './question';
 import Answer from './answer';
 import Feedback from './feedback';
-import connectWithDispatch from '../utils/connector';
+import {connectWithDispatch} from '../utils/connector';
 import {getNextQuestion} from '../actions/question';
 
 const Main = React.createClass({

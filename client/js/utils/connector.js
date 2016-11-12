@@ -17,4 +17,5 @@ const mergeProps  = function (stateProps, dispatchProps) {
     return stateProps;
 };
 
-export default function (dispatch) {return connect(mapStateToProps, dispatch || function(){return {};}, mergeProps)};
+export function connectWithDispatch(dispatch) {return connect(mapStateToProps, dispatch, mergeProps)};
+export const connectTo = connect(mapStateToProps);
