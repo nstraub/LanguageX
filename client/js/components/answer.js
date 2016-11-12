@@ -1,4 +1,6 @@
 import React from 'react';
+import connectWithDispatch from '../utils/connector';
+import {submitAnswer} from '../actions/question';
 
 const Answer = React.createClass({
     render: function () {
@@ -10,8 +12,16 @@ const Answer = React.createClass({
         )
     },
     checkAnswer: function () {
-        throw 'not implemented';
+        this.props.submitAnswer(this.props.answer.toLowerCase() === this.refs.answer.value.toLowerCase());
     }
 });
 
-export default Answer;
+const mapDispatchToProps = function (dispatch) {
+    return {
+        submitAnswer: function (userId, isCorrect) {
+            dispatch(submitAnswer(userId, isCorrect))
+        }
+    };
+};
+
+export default connectWithDispatch(mapDispatchToProps)(Answer);
