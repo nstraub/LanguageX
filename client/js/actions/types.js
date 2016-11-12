@@ -4,5 +4,6 @@ export default {
     SERVER_FAILURE: 2,
     SUBMIT_ANSWER_CORRECT: 3,
     GET_NEXT_QUESTION: 4,
-    SET_FEEDBACK: 5
+    SET_FEEDBACK: 5,
+    CLEAR_FEEDBACK: 6
 };

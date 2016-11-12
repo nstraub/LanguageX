@@ -1,28 +1,19 @@
-import actionTypes from '../actions/types';
+import actions from '../actions/types';
+import initialState from './initialState';
+import {currentQuestion, feedback} from "./main";
 
-const initialState = {
-    user: {
-        username: "dave",
-        _id: "5823dacf070e412748f610b5"
-    },
-    current: {
-        question: null,
-        answer: null
-    },
-    feedback: null
-};
+function isServerResponse(type) {
+    return type === actions.SERVER_SUCCESS;
+}
 
 export default function reducer(state, action) {
-    switch(action.type) {
-        case actionTypes.SERVER_SUCCESS:
-            return reducer(state, action.payload);
-        case actionTypes.GET_NEXT_QUESTION:
-            return Object.assign({}, state, {current: action.payload});
-        case actionTypes.SET_FEEDBACK:
-            return Object.assign({}, state, {feedback: action.isCorrect ? 'correct' : 'incorrect, correct is ' + state.current.answer});
-        case actionTypes.SUBMIT_ANSWER_CORRECT:
-            return state;
-        default:
-            return initialState;
+    if (!state) { return initialState; }
+
+    if (isServerResponse(action.type)) { return reducer(state, action.payload); }
+
+    return {
+        user: state.user,
+        current: currentQuestion(state.current, action),
+        feedback: feedback(state.feedback, action, state.current.answer)
     }
 }
