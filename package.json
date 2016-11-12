@@ -41,8 +41,8 @@
     "watch:client:dev:js": "run-s build:client:dev:js && cross-env NODE_ENV=development webpack --watch",
     "clean:client:dev:css": "rm -rf build/dev/client/css",
     "mkdir:client:dev:css": "shx mkdir -p build/dev/client/css",
-    "build:client:dev:css": "run-s clean:client:dev:css mkdir:client:dev:css && node-sass --source-map true client/scss/index.scss build/dev/client/css/$npm_package_name.$npm_package_version.css",
-    "watch:client:dev:css": "run-s build:client:dev:css && cross-env NODE_ENV=development node-sass --source-map true -wr client/scss/index.scss build/dev/client/css/$npm_package_name.$npm_package_version.css",
+    "build:client:dev:css": "run-s clean:client:dev:css mkdir:client:dev:css && cross-env node-sass --source-map true client/scss/index.scss build/dev/client/css/thinkful-full-stack-template.0.0.1.css",
+    "watch:client:dev:css": "run-s build:client:dev:css && cross-env NODE_ENV=development cross-env node-sass --source-map true -wr client/scss/index.scss build/dev/client/css/thinkful-full-stack-template.0.0.1.css",
     "clean:client:dev:assets": "rm -rf build/dev/client/assets",
     "build:client:dev:assets": "run-s clean:client:dev:assets mkdir:client:dev && cp -r client/assets build/dev/client",
     "watch:client:dev:assets": "run-s build:client:dev:assets && chokidar client/assets/**/* -c 'npm run build:client:dev:assets'",
@@ -86,6 +86,9 @@
   "dependencies": {
     "body-parser": "^1.15.2",
     "express": "^4.14.0",
-    "isomorphic-fetch": "^2.2.1"
+    "isomorphic-fetch": "^2.2.1",
+    "react": "^15.3.2",
+    "react-dom": "^15.3.2",
+    "react-router": "^3.0.0"
   }
 }
