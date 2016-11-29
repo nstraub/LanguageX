@@ -8,7 +8,7 @@ const routes = express.Router();
 const jsonParser = bodyParser.json();
 
 function getUser(req, res, callback) {
-    User.findById(req.params.userId, function (err, user) {
+    User.findOne({'oauth.id':req.session.passport.user.id}, function (err, user) {
         if (err) {
             if (!user) {
                 return res.sendStatus(404);
@@ -18,19 +18,11 @@ function getUser(req, res, callback) {
         return callback(user);
     });
 }
+
 routes.get('/:userId', function (req, res) {
     getUser(req, res, function (user) {
         return res.status(200).json({username: user.username, _id: user._id});
     });
-});
-
-routes.post('/', jsonParser, function (req, res) {
-    var user = new User();
-    user.questions = getQuestions();
-    user.username = req.body.username;
-
-    user.save();
-    return res.status(201).json(user._id);
 });
 
 routes.get('/:userId/question', function (req, res) {

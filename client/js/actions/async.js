@@ -20,6 +20,7 @@ export function dispatchSuccess(dispatch, action, includeResponse) {
 export function post(url, body) {
     return fetch(url,
       {
+          credentials: 'include',
           method: 'POST',
           headers: {'Content-Type': 'application/json'},
           body: JSON.stringify(body)

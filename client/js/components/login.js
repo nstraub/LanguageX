@@ -5,7 +5,7 @@ const Login = React.createClass({
     render: function () {
         return (
           <div>
-              <Link to="/main">login</Link>
+              <a href="/auth/google">login</a>
           </div>
         )
     }

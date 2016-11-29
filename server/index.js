@@ -1,7 +1,9 @@
 import 'babel-polyfill';
 import express from 'express';
-import userRoutes from './routes/user-routes';
 import mongoose from 'mongoose';
+import './strategies/google-oauth2';
+import passport from 'passport'
+import session from 'express-session';
 
 mongoose.Promise = global.Promise;
 
@@ -11,9 +13,25 @@ const PORT = process.env.PORT || 8080;
 console.log(`Server running in ${process.env.NODE_ENV} mode`);
 
 const app = express();
-
 app.use(express.static(process.env.CLIENT_PATH));
-app.use('/users', userRoutes);
+passport.serializeUser(function(user, done) {
+    done(null, user);
+});
+
+passport.deserializeUser(function(user, done) {
+    done(null, user);
+});
+app.use(session({
+    secret: 'dev',
+    resave: false,
+    saveUninitialized: true
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.use('/main',express.static(process.env.CLIENT_PATH));
+app.use('/users', require('./routes/user-routes').default);
+app.use('/auth/google', require('./routes/auth/google-routes').default);
 
 function runServer() {
     return new Promise((resolve, reject) => {

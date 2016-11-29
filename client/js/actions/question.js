@@ -16,7 +16,7 @@ export function getNextQuestion(userId) {
     return function (dispatch) {
         dispatch(clearFeedback());
 
-        return fetch('/users/' + userId + '/question').
+        return fetch('/users/' + userId + '/question', {credentials: 'include'}).
         then(function (response) {
             return response.json();
         }).
