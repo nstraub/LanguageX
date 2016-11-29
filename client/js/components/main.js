@@ -15,7 +15,7 @@ const Main = React.createClass({
               <Question propList={['current.question']}/>
               <Answer propList={['current.answer']}/>
               <Feedback propList={['feedback']}/>
-              <button onClick={this.props.getQuestion}>next</button>
+              <button id="next-question" onClick={this.props.getQuestion}>Next Question</button>
           </div>
         )
     }

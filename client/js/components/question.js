@@ -4,8 +4,8 @@ import {connectTo} from '../utils/connector';
 const Question = React.createClass({
     render: function () {
         return (
-          <div className="QnA-segment">
-              {this.props.question}
+          <div id="question" className="QnA-segment">
+              What's english for "{this.props.question}"?
           </div>
         )
     }
