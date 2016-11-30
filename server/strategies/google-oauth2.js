@@ -7,10 +7,7 @@ const Strategy = require('passport-google-oauth2').Strategy;
 
 passport.use(new Strategy(oauth.google, function (accessToken, refreshToken, profile, cb) {
     User.findOne({'oauth.id': profile.id}, function (err, user){
-        if (err) {
-            return cb(err, null);
-        }
-        if (!user) {
+        if (!(err || user)) {
             return User.create({
                 username: profile.email,
                 questions: createQuestions(),
@@ -19,13 +16,8 @@ passport.use(new Strategy(oauth.google, function (accessToken, refreshToken, pro
                     id: profile.id,
                     displayName: profile.displayName
                 }
-            }, function (err, user) {
-                if (err) {
-                    return cb(err, null);
-                }
-                cb(null, profile);
-            });
+            }, cb);
         }
-        return cb(null, profile);
+        return cb(err, user);
     })
 }));

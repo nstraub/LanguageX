@@ -14,13 +14,13 @@ console.log(`Server running in ${process.env.NODE_ENV} mode`);
 
 const app = express();
 app.use(express.static(process.env.CLIENT_PATH));
-passport.serializeUser(function(user, done) {
-    done(null, user);
-});
 
-passport.deserializeUser(function(user, done) {
+const serializer = function(user, done) {
     done(null, user);
-});
+};
+passport.serializeUser(serializer);
+passport.deserializeUser(serializer);
+
 app.use(session({
     secret: 'dev',
     resave: false,

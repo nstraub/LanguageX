@@ -7,36 +7,38 @@ import sortCurrentQuestion from '../domain/spaced-repetition';
 const routes = express.Router();
 const jsonParser = bodyParser.json();
 
-function getUser(req, res, callback) {
-    User.findOne({'oauth.id':req.session.passport.user.id}, function (err, user) {
+function getUser(req, res, next) {
+    function httpError(statusCode) {
+        res.sendStatus(statusCode);
+        return next('route')
+    }
+
+    User.findOne({'oauth.id':req.session.passport.user.oauth.id}, function (err, user) {
         if (err) {
-            if (!user) {
-                return res.sendStatus(404);
-            }
-            return res.sendStatus(500)
+            return httpError(500);
         }
-        return callback(user);
+        if (!user) {
+            return httpError(404);
+        }
+        req.user = req.session.passport.user;
+        return next();
     });
 }
 
-routes.get('/:userId', function (req, res) {
-    getUser(req, res, function (user) {
-        return res.status(200).json({username: user.username, _id: user._id});
-    });
+routes.get('/:userId', getUser, function (req, res) {
+    return res.status(200).json({username: req.user.username, _id: req.user._id});
 });
 
-routes.get('/:userId/question', function (req, res) {
-    getUser(req, res, function (user) {
-        return res.status(200).json(user.questions[0]);
-    });
+routes.get('/:userId/question', getUser, function (req, res) {
+    return res.status(200).json(req.user.questions[0]);
 });
 
-routes.post('/:userId/question', jsonParser, function (req, res) {
-    getUser(req, res, function (user) {
-        sortCurrentQuestion(user.questions, req.body.isCorrect);
-        user.save();
+routes.post('/:userId/question', [jsonParser, getUser], function (req, res) {
+    sortCurrentQuestion(req.user.questions, req.body.isCorrect);
+
+    User.findOneAndUpdate({_id: req.user._id}, req.user, function () {
         return res.sendStatus(200);
-    });
+    })
 });
 
 export default routes;
