@@ -13,7 +13,7 @@ function asyncSuccess(actionType, payload) {
 
 export function dispatchSuccess(dispatch, action, includeResponse) {
     return function (response) {
-        dispatch(asyncSuccess(action, includeResponse ? response : null));
+        dispatch(asyncSuccess(action, includeResponse && response));
     }
 }
 

@@ -1,10 +1,10 @@
 import traverse from './traverse';
 
-export default function (state, propList) {
+export default function (state, props) {
     var ret = {};
-    if (propList.propList) {
-        propList = propList.propList;
-        propList.forEach(function (prop) {
+    if (props.propList) {
+        props = props.propList;
+        props.forEach(function (prop) {
             ret[prop.split('.').pop()] = traverse(state, prop.split('.'));
         });
     }

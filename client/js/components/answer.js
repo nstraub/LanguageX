@@ -16,6 +16,7 @@ const Answer = React.createClass({
     },
     checkAnswer: function () {
         this.props.submitAnswer(this.isAnswerCorrect());
+        this.refs.answer.value = '';
     }
 });
 

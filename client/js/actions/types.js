@@ -5,5 +5,6 @@ export default {
     SUBMIT_ANSWER_CORRECT: 3,
     GET_NEXT_QUESTION: 4,
     SET_FEEDBACK: 5,
-    CLEAR_FEEDBACK: 6
+    CLEAR_FEEDBACK: 6,
+    GET_USER: 7
 };
