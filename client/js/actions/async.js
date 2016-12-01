@@ -1,4 +1,5 @@
 import fetch from 'isomorphic-fetch';
+
 import actionTypes from './types';
 
 function asyncSuccess(actionType, payload) {
@@ -8,21 +9,20 @@ function asyncSuccess(actionType, payload) {
             type: actionType,
             payload: payload || {}
         }
-    }
+    };
 }
 
 export function dispatchSuccess(dispatch, action, includeResponse) {
     return function (response) {
         dispatch(asyncSuccess(action, includeResponse && response));
-    }
+    };
 }
 
 export function post(url, body) {
-    return fetch(url,
-      {
-          credentials: 'include',
-          method: 'POST',
-          headers: {'Content-Type': 'application/json'},
-          body: JSON.stringify(body)
-      });
+    return fetch(url, {
+        credentials: 'include',
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(body)
+    });
 }

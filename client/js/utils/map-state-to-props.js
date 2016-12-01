@@ -1,5 +1,6 @@
 import traverse from './traverse';
 
+
 export default function (state, props) {
     var ret = {};
     if (props.propList) {
@@ -11,4 +12,4 @@ export default function (state, props) {
     ret.id = state.user._id;
 
     return ret;
-};
+}

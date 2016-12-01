@@ -1,9 +1,12 @@
 import 'babel-polyfill';
+
 import express from 'express';
 import mongoose from 'mongoose';
-import './strategies/google-oauth2';
-import passport from 'passport'
+import passport from 'passport';
 import session from 'express-session';
+
+import './strategies/google-oauth2';
+
 
 mongoose.Promise = global.Promise;
 

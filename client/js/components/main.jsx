@@ -1,9 +1,12 @@
 import React from 'react';
+
 import Question from './question';
 import Answer from './answer';
 import Feedback from './feedback';
+
 import {connectWithDispatch} from '../utils/connector';
 import {getNextQuestion} from '../actions/question';
+
 
 const Main = React.createClass({
     componentWillMount: function () {
@@ -11,13 +14,13 @@ const Main = React.createClass({
     },
     render: function () {
         return (
-          <div>
-              <Question propList={['current.question']}/>
-              <Answer propList={['current.answer']}/>
-              <Feedback propList={['feedback']}/>
-              <button id="next-question" onClick={this.props.getQuestion}>Next Question</button>
-          </div>
-        )
+            <div>
+                <Question propList={['current.question']} />
+                <Answer propList={['current.answer']} />
+                <Feedback propList={['feedback']} />
+                <button id="next-question" onClick={this.props.getQuestion}>Next Question</button>
+            </div>
+        );
     }
 });
 

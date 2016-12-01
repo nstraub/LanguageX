@@ -1,6 +1,8 @@
 import actions from '../actions/types';
 import initialState from './initialState';
-import {currentQuestion, feedback} from "./main";
+
+import {currentQuestion, feedback} from './main';
+
 
 function isServerResponse(type) {
     return type === actions.SERVER_SUCCESS;
@@ -15,5 +17,5 @@ export default function reducer(state, action) {
         user: state.user,
         current: currentQuestion(state.current, action),
         feedback: feedback(state.feedback, action, state.current.answer)
-    }
+    };
 }

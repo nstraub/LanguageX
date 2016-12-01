@@ -1,7 +1,9 @@
-import oauth from './oauth';
-import passport from "passport";
-import User from '../models/user';
+import passport from 'passport';
+
 import createQuestions from '../factories/french-questions';
+import oauth from './oauth';
+import User from '../models/user';
+
 
 const Strategy = require('passport-google-oauth2').Strategy;
 
@@ -19,5 +21,5 @@ passport.use(new Strategy(oauth.google, function (accessToken, refreshToken, pro
             }, cb);
         }
         return cb(err, user);
-    })
+    });
 }));

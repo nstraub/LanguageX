@@ -1,8 +1,9 @@
-import express from 'express';
-import User from '../models/user';
 import bodyParser from 'body-parser';
-import getQuestions from '../factories/french-questions';
+import express from 'express';
+
 import sortCurrentQuestion from '../domain/spaced-repetition';
+import User from '../models/user';
+
 
 const routes = express.Router();
 const jsonParser = bodyParser.json();
@@ -10,7 +11,7 @@ const jsonParser = bodyParser.json();
 function getUser(req, res, next) {
     function httpError(statusCode) {
         res.sendStatus(statusCode);
-        return next('route')
+        return next('route');
     }
 
     User.findOne({'oauth.id':req.session.passport.user.oauth.id}, function (err, user) {
@@ -38,7 +39,7 @@ routes.post('/:userId/question', [jsonParser, getUser], function (req, res) {
 
     User.findOneAndUpdate({_id: req.user._id}, req.user, function () {
         return res.sendStatus(200);
-    })
+    });
 });
 
 export default routes;

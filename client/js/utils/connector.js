@@ -1,4 +1,5 @@
 import {connect} from 'react-redux';
+
 import mapStateToProps from './map-state-to-props';
 
 
@@ -11,11 +12,11 @@ const mergeProps  = function (stateProps, dispatchProps) {
             var args = Array.prototype.slice.call(arguments);
             args.unshift(id);
             dispatchProps[key].apply(null, args);
-        }
+        };
     });
 
     return stateProps;
 };
 
-export function connectWithDispatch(dispatch) {return connect(mapStateToProps, dispatch, mergeProps)};
+export function connectWithDispatch(dispatch) {return connect(mapStateToProps, dispatch, mergeProps);}
 export const connectTo = connect(mapStateToProps);
