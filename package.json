@@ -4,7 +4,7 @@
   "description": "A full-stack template for Thinkful students",
   "main": "index.js",
   "main:server": "server/index.js",
-  "main:client": "client/js/index.js",
+  "main:client": "client/js/index.jsx",
   "scripts": {
     "start": "[ \"$NODE_ENV\" = \"production\" ] && npm run serve:server:production || npm run serve:server:dev",
     "dev": "run-p watch serve:server:dev",
@@ -83,7 +83,7 @@
     "nodemon": "^1.10.0",
     "npm-run-all": "^3.0.0",
     "shx": "^0.2.0",
-    "webpack": "^1.13.1"
+    "webpack": "^1.13.3"
   },
   "dependencies": {
     "body-parser": "^1.15.2",

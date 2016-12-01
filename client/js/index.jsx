@@ -8,8 +8,8 @@ import {Provider} from 'react-redux';
 import {createStore, applyMiddleware} from 'redux';
 import {Router, Route, browserHistory} from 'react-router';
 
-import Main from './components/main';
-import Login from './components/login';
+import Main from './components/main.jsx';
+import Login from './components/login.jsx';
 import reducer from './reducers/reducers';
 
 render(

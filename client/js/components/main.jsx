@@ -1,8 +1,8 @@
 import React from 'react';
 
-import Question from './question';
-import Answer from './answer';
-import Feedback from './feedback';
+import Question from './question.jsx';
+import Answer from './answer.jsx';
+import Feedback from './feedback.jsx';
 
 import {connectWithDispatch} from '../utils/connector';
 import {getNextQuestion} from '../actions/question';
